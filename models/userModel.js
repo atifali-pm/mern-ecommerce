@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: [true, 'Address is required']
         },
+        answer: {
+            type: String,
+            required: [true, 'answer is required']
+        },
         role: {
             type: Number,
             default: 0,
