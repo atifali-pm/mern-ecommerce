@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import 'colors';
 import connectDb from './config/config.js';
 import authRoute from "./routes/authRoute.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 
 
 // dotenv config
@@ -24,12 +25,8 @@ app.use(morgan("dev"))
 
 // //routes
 app.use("/api/v1/auth", authRoute);
-// app.use("/api/v1/transactions", require("./routes/transactionRoute"));
+app.use("/api/v1/category", categoryRoutes);
 
-
-app.get('/', (req, res) => {
-    res.send("<h1>POST asdfasf</h1>")
-});
 
 // port
 const PORT = process.env.PORT || 8080
