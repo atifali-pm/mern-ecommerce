@@ -45,3 +45,42 @@ export const createProductController = async (req, res) => {
         });
     }
 };
+
+
+// get all products
+export const productController = async (req, res) => {
+    try {
+        const products = await productModel.find({}).populate('category').select("-photo").limit(12).sort({createdAt: -1});
+        res.status(200).send({
+            success: true,
+            message: "All Products List",
+            products,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            error,
+            message: "Error while getting all categories",
+        });
+    }
+};
+
+export const getSingleProductController = async (req, res) => {
+    try {
+        const product = await productModel.findOne({slug: req.params.slug}).populate('category').select("-photo");
+        res.status(200).send({
+            success: true,
+            message: "Get Single Category Product Successfully",
+            product,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            error,
+            message: "Error While getting Single product",
+        });
+    }
+};
+
